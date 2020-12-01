@@ -1,0 +1,6 @@
+
+
+Find the files owned by harry, and copy it to catalog: /opt/dir
+
+# cd /opt/
+# mkdir dir # find / -user harry -exec cp -rfp {} /opt/dir/ \;
