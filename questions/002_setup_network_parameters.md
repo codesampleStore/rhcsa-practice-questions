@@ -53,3 +53,5 @@ Also when using GUI there is also graphical interface for it.
 
 
 Edit /etc/sysconfig/network-scripts/ifcfg-<intname>
+sudo nmcli networking off
+sudo nmcli networking on
