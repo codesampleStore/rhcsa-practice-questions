@@ -50,3 +50,6 @@ nmcli conn show --active      # to check if the connection is up
 
 It is possible to edit existing connection using **nmtui** tool which can be easier. 
 Also when using GUI there is also graphical interface for it.
+
+
+Edit /etc/sysconfig/network-scripts/ifcfg-<intname>
