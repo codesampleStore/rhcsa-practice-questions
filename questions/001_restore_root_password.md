@@ -26,6 +26,10 @@ normal ***/*** hierarchy.
 password.
 * In order to finish the task **SELinux** must be taken care of. If not, contents of ***/etc/shadow*** will be messed up. There are
 two commands to be provided:
+
+```touch /.autorelabel
+```
+These strps are optional. They can messed up system
 ```
  load_policy -i 
  chcon -t shadow_t /etc/shadow
