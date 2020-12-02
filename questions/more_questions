@@ -73,5 +73,65 @@ access it. The files created by users from the same group should also be the adm
 # chown .admin admins/
 # chmod 770 admins/ # chmod g+s admins/
 
+6.
+
+ How to configure an NTP client on RHEL 8 / CentOS 8 Linux step by step instructions
+In this section we will configure an NTP client to time sync with our new Chrony NTP server located on the 192.168.1.150 IP address:
+
+    Install Chrony NTP package:
+
+    # dnf install chrony
+
+    Enable Chrony to start after boot:
+
+    # systemctl enable chronyd
+
+    Set Chrony to act as an NTP client
+
+    To turn Chrony into the NTP cleint add the following line into the main Chrony /etc/chrony.conf configuration file. Change the IP address accordingly to point to your local Chrony NTP server:
+
+    Server 192.168.1.150
+
+    Restart Chrony NTP daemon to apply the changes:
+
+    # systemctl restart chronyd
+
+    Check for NTP server sources. Your local NTP server should be listed:
+
+    # chronyc sources 
+    210 Number of sources = 9
+    MS Name/IP address         Stratum Poll Reach LastRx Last sample               
+    ===============================================================================
+    ^* rhel8.localdomain             3   6     7    36  -8235ns[-1042us] +/- 5523us
+
+    By default the Chrony NTP client will perform a time synchronization in every 64 seconds.
+    Check NTP client list on the NTP server:
+
+    # chronyc clients
+    Hostname                      NTP   Drop Int IntL Last     Cmd   Drop Int  Last
+    ===============================================================================
+    ntp-client.localdomain       7      0  10   -    48       0      0   -     -
+
+
+
+7.
+
+
+
+Create a volume group, and set 16M as a extends. And divided a volume group containing
+50 extends on volume group lv, make it as ext4 file system, and mounted automatically
+under /mnt/data.
+
+# pvcreate /dev/sda7 /dev/sda8
+# vgcreate -s 16M vg1 /dev/sda7 /dev/sda8
+# lvcreate -l 50 -n lvm02
+# mkfs.ext4 /dev/vg1/lvm02
+# blkid /dev/vg1/lv1
+# vim /etc/fstab
+# mkdir -p /mnt/data
+UUID=xxxxxxxx /mnt/data ext4 defaults 0 0
+# vim /etc/fstab
+# mount -a
+# mount (Verify)
 
 `
