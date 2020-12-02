@@ -134,4 +134,23 @@ UUID=xxxxxxxx /mnt/data ext4 defaults 0 0
 # mount -a
 # mount (Verify)
 
-`
+`==
+339  pvcreate /dev/sda7
+  340  pvs
+  341  xxd /dev/sda7 | less
+  342  vgcreate --help
+  343  vgcreate -s 16m vgdata /dev/sda7
+  344  vgs
+  345  vgdisplay vgdata
+  346  lvcreate -n lvdata -L 1G vgdata
+  351  lvcreate -n lvdata -l 63 vgdata
+  352  lvs
+  353  mkfs.ext3 /dev/vgdata/lvdata
+  354  vim /etc/fstab
+  355  mount -a
+  356  mkdir /lvdata
+  357  mount -a
+  358  df -h
+  359  ls -l /dev/mapper/vgdata-lvdata /dev/vgdata/lvdata
+  360  \ls -l /dev/mapper/vgdata-lvdata /dev/vgdata/lvdata
+  ===
