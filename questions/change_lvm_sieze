@@ -1,0 +1,84 @@
+  Change the logical volume capacity named vo from 190M to 300M. and the size of the
+floating range should set between 280 and 320. (This logical volume has been mounted in
+advance.)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  369  vgextend vgdata /dev/sda8
+  370  vgs
+
+  374  lvresize -r -L +500M /dev/vgdata/lvdata 
+  375  lvresize -l +100%FREE /dev/vgdata/lvdata 
+  376  lvs
+  377  df -h
+  378  resize2fs /dev/mapper/vgdata-lvdata 
+  379  df -h
+  
+  pvs - displai physial volume group
+  vgs - display volume grooup info
+  lvs - display logical volume group info
+  
+  
+  
+  # vgdisplay
+(Check the capacity of vg, if the capacity is not enough, need to create pv , vgextend ,
+lvextend)
+# lvdisplay (Check lv)
+# lvextend -L +110M /dev/vg2/lv2
+# resize2fs /dev/vg2/lv2
+mount -a
+(Verify)
+------------------------------------------------------------------------------- 
+(Decrease lvm)
+# umount /media
+
+# fsck -f /dev/vg2/lv2
+
+# resize2fs -f /dev/vg2/lv2 100M
+
+# lvreduce -L 100M /dev/vg2/lv2
+
+# mount -a
+
+# lvdisplay (Verify)
+
+OR
+
+# e2fsck -f /dev/vg1/lvm02
+
+# resize2fs -f /dev/vg1/lvm02
+
+# mount /dev/vg1/lvm01 /mnt
+
+# lvreduce -L 1G -n /dev/vg1/lvm02 
+
+# lvdisplay (Verify)
