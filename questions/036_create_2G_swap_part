@@ -1,0 +1,59 @@
+Create a 2G swap partition which take effect automatically at boot-start, and it should not
+affect the original swap partition.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# fdisk /dev/sda 
+# n 
+# hit enter 
+# +2G 
+# t 
+# 82 Linux swap 
+# w 
+# partprobe *** Till this point 2G partition with Partitiion type swap is assigned to it ======================================== 
+
+
+# mkswap /dev/sda* :: Number of sda* partition created assigned as Swap 
+
+# vim /etc/fstab 
+
+:: >> /dev/sda* swap swap 0 0 defaults >> save and exit 
+
+
+# swapon -a :: Enables the Swap partition 
+
+# swapon -s :: Check the status of the partition
