@@ -1,0 +1,64 @@
+Install a FTP server, and request to anonymous download from /var/ftp/pub catalog. (it
+needs you to configure yum direct to the already existing file server. )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# cd /etc/yum.repos.d
+# vim local.repo
+[local]
+name=local.repo
+baseurl=files:///mnt
+enabled=1
+gpgcheck=0
+
+# yum makecache
+# yum install -y vsftpd
+# service vsftpd restart
+# chkconfig vsftpd on
+# chkconfig --list vsftpd
+# vim /etc/vsftpd/vsftpd.conf anonymous_enable=YES
+# set permissions for ftp write to /var/ftp/pub
