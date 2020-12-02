@@ -166,3 +166,16 @@ UUID=xxxxxxxx /mnt/data ext4 defaults 0 0
   and apply them using 
   
   grub2-mkconfig -o /boot/grub2/grub.cfg to make them persistent
+
+9.
+
+Upgrading the kernel as xx.xx.xxx, and configure the system to Start the default kernel,
+keep the old kernel available.
+
+yum update kernel
+yum install kernel-{version}
+
+https://www.golinuxcloud.com/boot-with-old-kernel-version-rhel-8-grubby/
+
+grubby --set-default-index 1
+grubby --default-index
