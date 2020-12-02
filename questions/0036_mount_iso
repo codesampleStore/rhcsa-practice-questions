@@ -1,0 +1,63 @@
+Download ftp://192.168.0.254/pub/boot.iso to /root, and mounted automatically under
+/media/cdrom and which take effect automatically at boot-start.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+####just copy iso image from drive
+# dd if/dev/sr0 of=/root/boot.iso bs=2M
+
+# mkdir /media/cdrom
+
+# vi /etc/fstab
+
+# /root/boot.iso /media/cdrom iso9660 defaults,loop 0 0
+
+# mount -a
