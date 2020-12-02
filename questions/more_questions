@@ -154,3 +154,15 @@ UUID=xxxxxxxx /mnt/data ext4 defaults 0 0
   359  ls -l /dev/mapper/vgdata-lvdata /dev/vgdata/lvdata
   360  \ls -l /dev/mapper/vgdata-lvdata /dev/vgdata/lvdata
   ===
+  
+  8.
+  
+  Modifying GRUB 
+  
+  Make modifications to /etc/defaults/grub
+  
+  Write modifications to /boot/grub2/grub.cfg
+  
+  and apply them using 
+  
+  grub2-mkconfig -o /boot/grub2/grub.cfg to make them persistent
