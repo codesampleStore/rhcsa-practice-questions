@@ -1,0 +1,37 @@
+Add user: user1, set uid=601
+Password: redhat
+The user's login shell should be non-interactive.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# useradd -u 601 -s /sbin/nologin user1
+# passwd user1 redhat
