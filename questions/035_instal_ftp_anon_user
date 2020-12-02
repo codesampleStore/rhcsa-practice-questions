@@ -46,6 +46,7 @@ needs you to configure yum direct to the already existing file server. )
 
 
 
+man yum.conf
 
 # cd /etc/yum.repos.d
 # vim local.repo
