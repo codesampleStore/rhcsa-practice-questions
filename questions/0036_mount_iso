@@ -61,3 +61,12 @@ Download ftp://192.168.0.254/pub/boot.iso to /root, and mounted automatically un
 # /root/boot.iso /media/cdrom iso9660 defaults,loop 0 0
 
 # mount -a
+
+
+cd /root 
+
+wget ftp://192.168.0.254/pub/boot.iso 
+
+im /etc/fstab /root/boot.iso /media/cdrom iso9660,loop 0 0 
+
+mount -a
