@@ -1,0 +1,77 @@
+1. Add admin group and set gid=600
+
+    # groupadd -g 600 admin
+
+2. 
+
+Configure the verification mode of your host account and the password as LDAP. And it
+can ldapuser40. The password is set as "password". And the certificate login successfully
+through
+can be downloaded from http://ip/dir/ldap.crt. After the user logs on , the user has no host
+directory unless you configure the autofs in the following questions.
+
+    system-config-authentication
+    ldap//instructor.example.com (In domain form, not write IP)
+    OR
+    # yum groupinstall directory-client (1.krb5-workstation 2.pam-krb5 3.sssd)
+    # system-config-authentication
+    LDAP
+    dc=example,dc=com
+    //instructor.example.com (In domain form, not write IP) 4.Download
+    CA Certificate
+    LDAP password
+    6.Apply getent passwd ldapuser40
+
+3.
+
+Configure autofs to make sure after login successfully, it has the home directory autofs,
+which is shared as /rhome/ldapuser40 at the ip: 172.24.40.10. and it also requires that,
+other ldap users can use the home directory normally.
+
+# systemctl enable --now autofs.service
+
+# cd /etc/
+
+# vim /etc/auto.master
+
+/rhome /etc/auto.ldap
+
+# cp auto.misc auto.ldap
+
+# vim auto.ladp
+
+autofs  -rw 192.168.1.2:/home/autofs
+
+# systemctl restart autofs.service
+
+# showmount -e 172.24.40.10 
+
+# su - ladpuser40
+
+4.
+Create a 512M partition, make it as ext4 file system, mounted automatically under
+/mnt/data and which take effect automatically at boot-start.
+
+# fdisk /dev/vda
+n
++512M
+w
+# partprobe /dev/vda
+# mkfs -t ext4 /dev/vda5
+# mkdir -p /data
+# vim /etc/fstab
+/dev/vda5 /data ext4 defaults 0 0 # mount -a
+
+5.
+
+Create a catalog under /home named admins. Its respective group is requested to be the
+admin group. The group users could read and write, while other users are not allowed to
+access it. The files created by users from the same group should also be the admin group.
+
+# cd /home/
+# mkdir admins /
+# chown .admin admins/
+# chmod 770 admins/ # chmod g+s admins/
+
+
+`
