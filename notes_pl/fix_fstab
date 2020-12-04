@@ -1,0 +1,26 @@
+
+
+It seems that I've found a solution:
+
+    at the grub prompt, hit a to append options
+    add init=/bin/bash to the end of the kernel command line and press enter
+
+The system will boot to a prompt like 'bash-3.2#' enter the following commands at the prompt
+
+    mount -o remount,rw /
+    vim /etc/fstab
+
+edit the fstab file commenting the errors by adding a # at the begining of each problematic line, save the file
+
+    reboot by pressing CTRL+ALT+DEL
+
+share improve this answer follow
+edited Jul 2 '15 at 11:51
+elijahbee
+344 bronze badges
+answered Jul 26 '12 at 14:20
+altern
+1,56233 gold badges1616 silver badges2020 bronze badges
+
+    5
+    I had to use mount -o remount,rw / --target / to succesfully remount in rw mode. Elsecase mount was picking the bad values from /etc/fstab, see the man mount for details. – laconbass Oct 18 '16 at 12:14
