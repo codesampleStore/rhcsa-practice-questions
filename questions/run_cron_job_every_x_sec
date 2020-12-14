@@ -1,0 +1,5 @@
+* * * * *   sleep 0; command
+* * * * *   sleep X; command
+* * * * *   sleep 2X; command
+...
+* * * * *   sleep nX; command #nX<=60
